@@ -1,0 +1,488 @@
+/*
+  OLED skin - C++ host only.
+  Activated when <html data-host="native"> (set from ?host=native).
+  True black panels, sparse crimson accent, no aurora/orbs/gradient spam.
+*/
+html[data-host="native"] {
+  --bg-base: #000000;
+  --bg-layer-1: #0a0a0a;
+  --bg-layer-2: #111111;
+  --bg-layer-3: #161616;
+  --bg-solid-1: #050505;
+  --bg-solid-2: #0c0c0c;
+  --border-glass: #1c1c1c;
+  --border-faint: #141414;
+  --border-hot: #3a3a3a;
+  --text-1: #f2f2f2;
+  --text-2: #9a9a9a;
+  --text-3: #5a5a5a;
+  --accent: #e74c3c;
+  --accent-soft: rgba(231, 76, 60, 0.14);
+  --accent-ink: #ffffff;
+  --accent-2: #2dd4bf;
+  --accent-2-ink: #042f2a;
+  --accent-2-soft: rgba(45, 212, 191, 0.16);
+  --grad-score: #2dd4bf;
+  --grad-score-hot: #5eead4;
+  --card-solid: #141414;
+  --card-solid-2: #171717;
+  --card-border: #2a2a2a;
+  --icon-tile: #1f1f1f;
+  --warn-hot: #f0b429;
+  --good: #2ecc71;
+  --bad: #ff4d4f;
+  --warn: #f0b429;
+  --info: #e74c3c;
+  --grad-accent: #e74c3c;
+  --grad-accent-hot: #ff4438;
+  --grad-mark: #111111;
+  --grad-line: #1c1c1c;
+  --grad-text: #f2f2f2;
+  --shadow-1: 0 1px 0 rgba(255, 255, 255, 0.03);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.65);
+  --shadow-lift: 0 6px 18px rgba(0, 0, 0, 0.55);
+  --shadow-glow: none;
+  --shadow-accent: 0 0 0 1px rgba(225, 29, 46, 0.35);
+  --orb-a: transparent;
+  --orb-b: transparent;
+  --orb-c: transparent;
+  color-scheme: dark;
+}
+
+html[data-host="native"][data-theme="light"] {
+  --bg-base: #f4f4f4;
+  --bg-layer-1: #ffffff;
+  --bg-layer-2: #f0f0f0;
+  --bg-layer-3: #ebebeb;
+  --bg-solid-1: #ffffff;
+  --bg-solid-2: #ececec;
+  --border-glass: #d8d8d8;
+  --border-faint: #e6e6e6;
+  --border-hot: #bdbdbd;
+  --text-1: #111111;
+  --text-2: #555555;
+  --text-3: #888888;
+  --accent: #c41e2a;
+  --accent-soft: rgba(196, 30, 42, 0.1);
+  --accent-ink: #ffffff;
+  --accent-2: #0d9488;
+  --accent-2-ink: #ffffff;
+  --accent-2-soft: rgba(13, 148, 136, 0.12);
+  --grad-score: #0d9488;
+  --grad-score-hot: #14b8a6;
+  --card-solid: #ffffff;
+  --card-solid-2: #f5f5f5;
+  --card-border: #e5e7eb;
+  --icon-tile: #f3f4f6;
+  --warn-hot: #d97706;
+  --grad-accent: #c41e2a;
+  --grad-accent-hot: #d92735;
+  --grad-mark: #111111;
+  --grad-line: #d0d0d0;
+  --grad-text: #111111;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 8px 20px rgba(0, 0, 0, 0.1);
+  --shadow-lift: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-glow: none;
+  --shadow-accent: 0 0 0 1px rgba(196, 30, 42, 0.3);
+}
+
+/* kill ambient glow / animated blobs on native */
+html[data-host="native"] .aurora,
+html[data-host="native"] .aurora::before,
+html[data-host="native"] .aurora::after {
+  background: #000000 !important;
+  filter: none !important;
+  animation: none !important;
+  box-shadow: none !important;
+}
+html[data-host="native"][data-theme="light"] .aurora,
+html[data-host="native"][data-theme="light"] .aurora::before,
+html[data-host="native"][data-theme="light"] .aurora::after {
+  background: #f4f4f4 !important;
+}
+
+/* panels: flat near-black, 1px hairline - no glass bloom */
+html[data-host="native"] .glass {
+  background: var(--bg-layer-1);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--border-glass);
+  box-shadow: none;
+}
+html[data-host="native"] .glass::before { display: none; }
+
+html[data-host="native"] .titlebar .drag .dot {
+  background: var(--accent);
+  box-shadow: none;
+  animation: none;
+}
+html[data-host="native"] .sidebar::after,
+html[data-host="native"] .topbar::after,
+html[data-host="native"] .auth-card::after,
+html[data-host="native"] .toast::before,
+html[data-host="native"] .stat-card::before {
+  background: var(--border-glass);
+  height: 1px;
+}
+html[data-host="native"] .auth-card::before {
+  background: var(--accent);
+  box-shadow: none;
+  height: 2px;
+}
+
+/* nav: left bar marker, no pill glow */
+html[data-host="native"] #nav-pill {
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  box-shadow: none;
+}
+html[data-host="native"] #nav-pill::before {
+  background: var(--accent);
+  box-shadow: none;
+}
+html[data-host="native"] .nav button.active { color: #ffffff; }
+html[data-host="native"] .nav button:hover .ic,
+html[data-host="native"] .nav button.active .ic {
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent);
+}
+html[data-host="native"] .nav button:hover .ic { background: #141414; }
+
+/* brand mark: solid block, no rainbow */
+html[data-host="native"] .brand .mark,
+html[data-host="native"] .avatar,
+html[data-host="native"] .auth-brand .mark,
+html[data-host="native"] .splash-mark,
+html[data-host="native"] .usercard .lav {
+  background: #111111;
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px #2a2a2a;
+}
+html[data-host="native"][data-theme="light"] .brand .mark,
+html[data-host="native"][data-theme="light"] .avatar,
+html[data-host="native"][data-theme="light"] .auth-brand .mark,
+html[data-host="native"][data-theme="light"] .splash-mark,
+html[data-host="native"][data-theme="light"] .usercard .lav {
+  background: #111111;
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px #2a2a2a;
+}
+html[data-host="native"] .brand b {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--text-1);
+}
+html[data-host="native"] .brand small { color: var(--accent); letter-spacing: 0.12em; }
+
+/* buttons: flat red primary, no sheen */
+html[data-host="native"] .btn::after { display: none; }
+html[data-host="native"] .btn {
+  background: var(--bg-layer-2);
+  border: 1px solid var(--border-glass);
+  box-shadow: none;
+}
+html[data-host="native"] .btn:hover:not(:disabled) {
+  background: var(--bg-layer-2);
+  border-color: var(--border-hot);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  transform: none;
+}
+html[data-host="native"] .btn.primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #ffffff;
+  box-shadow: none;
+}
+html[data-host="native"] .btn.primary:hover:not(:disabled) {
+  background: #ff4438;
+  border-color: #ff4438;
+  box-shadow: none;
+}
+html[data-host="native"] .btn.ghost:hover:not(:disabled) {
+  background: #141414;
+}
+
+/* cards / stats */
+html[data-host="native"] .card:hover {
+  background: var(--bg-layer-1);
+  border-color: var(--border-hot);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  transform: none;
+}
+html[data-host="native"] .card h3::before {
+  background: var(--accent);
+  box-shadow: none;
+}
+html[data-host="native"] .stat-card::after {
+  background: var(--accent);
+  box-shadow: none;
+}
+html[data-host="native"] .stat-card .k { color: var(--accent); }
+html[data-host="native"] .stat-card .v {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--text-1);
+}
+html[data-host="native"] .stat-card:hover {
+  transform: none;
+  background: var(--bg-layer-1);
+  border-color: var(--border-hot);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+html[data-host="native"] .stat-card:hover::after { box-shadow: none; }
+html[data-host="native"] .stat-card .ring-fg {
+  filter: none;
+  stroke: var(--accent);
+}
+html[data-host="native"] .stat-card .ring-bg { stroke: #1c1c1c; }
+html[data-host="native"] .page-titles p { color: var(--text-2); }
+html[data-host="native"] .nav-group { color: var(--text-3); }
+html[data-host="native"] .nav button.active {
+  background: #141414;
+}
+html[data-host="native"] #nav-pill {
+  background: #141414;
+}
+
+/* rows / toggles / inputs */
+html[data-host="native"] .act:hover {
+  transform: none;
+  background: var(--bg-layer-2);
+  border-color: var(--border-hot);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+html[data-host="native"] .act .stat { color: var(--accent); }
+html[data-host="native"] .twk-section:hover {
+  background: var(--bg-layer-1);
+  border-color: var(--border-hot);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+html[data-host="native"] .twk-head {
+  background: #0e0e0e;
+}
+html[data-host="native"] .twk-head.risky {
+  background: #120808;
+}
+html[data-host="native"] .twk-row:hover {
+  background: #141414;
+  border-color: #222222;
+}
+html[data-host="native"] .toggle[aria-checked="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: none;
+}
+html[data-host="native"] input[type="range"]::-webkit-slider-runnable-track {
+  background: #1a1a1a;
+  border-color: #222222;
+}
+html[data-host="native"] input[type="range"]::-webkit-slider-thumb {
+  background: var(--accent);
+  box-shadow: none;
+}
+html[data-host="native"] .pbar > div {
+  background: var(--accent);
+  box-shadow: none;
+}
+html[data-host="native"] .iconbtn:hover {
+  border-color: var(--border-hot);
+  box-shadow: none;
+  transform: none;
+  color: var(--accent);
+}
+html[data-host="native"] .iconbtn .badge {
+  background: var(--accent);
+  box-shadow: none;
+  color: #ffffff;
+}
+html[data-host="native"] .socbtn:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border-hot);
+}
+html[data-host="native"] .modal {
+  border-color: var(--border-hot);
+  box-shadow: var(--shadow-2);
+}
+html[data-host="native"] .overlay { background: rgba(0, 0, 0, 0.72); }
+html[data-host="native"] .toast {
+  border-color: var(--border-hot);
+  box-shadow: var(--shadow-2);
+}
+html[data-host="native"] .toast::before { background: var(--border-glass); }
+html[data-host="native"] .dd-list {
+  border-color: var(--border-hot);
+  box-shadow: var(--shadow-2);
+}
+html[data-host="native"] .auth-card {
+  border-color: var(--border-hot);
+  box-shadow: var(--shadow-2);
+}
+html[data-host="native"] .auth-brand .mark {
+  box-shadow: inset 0 0 0 1px #2a2a2a;
+}
+html[data-host="native"] #auth-ink {
+  background: var(--accent);
+  box-shadow: none;
+}
+html[data-host="native"] .tierbadge.lifetime {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: none;
+}
+html[data-host="native"] .usercard:hover {
+  background: #141414;
+  border-color: #222222;
+}
+html[data-host="native"] .usermenu {
+  border-color: var(--border-hot);
+  box-shadow: var(--shadow-2);
+}
+html[data-host="native"] .search:focus-within {
+  border-color: var(--border-hot);
+  box-shadow: none;
+}
+html[data-host="native"] .input:focus,
+html[data-host="native"] .ff input:focus {
+  border-color: var(--border-hot);
+  box-shadow: none;
+}
+html[data-host="native"] .splash-log {
+  min-height: 176px;
+}
+html[data-host="native"] .splash-title {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--text-1);
+}
+html[data-host="native"] .splash-log .sline:last-child { color: var(--accent); }
+html[data-host="native"] ::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+}
+html[data-host="native"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+html[data-host="native"] .chip.risky {
+  color: #ff6b6b;
+  border-color: #4a1515;
+  background: #1a0a0a;
+}
+html[data-host="native"] .regcat { color: var(--accent); }
+html[data-host="native"] .regrow:hover { background: #141414; }
+html[data-host="native"] .dd-opt:hover,
+html[data-host="native"] .dd-opt.act { background: #141414; color: var(--text-1); }
+html[data-host="native"] .dd-opt.sel { color: var(--accent); }
+html[data-host="native"] .sk {
+  background: linear-gradient(100deg, #0a0a0a 40%, #141414 50%, #0a0a0a 60%);
+  background-size: 200% 100%;
+}
+html[data-host="native"] .tweak-card,
+html[data-host="native"] .stat-card,
+html[data-host="native"] .scorebar,
+html[data-host="native"] .disk-card,
+html[data-host="native"] .locked-card {
+  background: #141414;
+  border-color: #2a2a2a;
+}
+html[data-host="native"] .tweak-card:hover,
+html[data-host="native"] .tweak-card.selected,
+html[data-host="native"] .tweak-card.on,
+html[data-host="native"] .stat-card:hover {
+  border-color: #e74c3c;
+}
+html[data-host="native"] .icon-tile { background: #1f1f1f; border-color: #2a2a2a; }
+html[data-host="native"] .scorebar-seg .val.teal { color: #2dd4bf; }
+html[data-host="native"] .btn.score { background: #2dd4bf; color: #042f2a; }
+html[data-host="native"] .scorebar-prog > div { background: #2dd4bf; }
+html[data-host="native"] .lock-pill,
+html[data-host="native"] .chip.warn-badge {
+  border-color: rgba(240, 180, 41, 0.5); color: #f0b429;
+}
+html[data-host="native"] .nav button.active { box-shadow: inset 3px 0 0 #e74c3c; }
+html[data-host="native"] .tweak-card,
+html[data-host="native"] .stat-card,
+html[data-host="native"] .scorebar,
+html[data-host="native"] .disk-card,
+html[data-host="native"] .locked-card {
+  background: #141414;
+  border-color: #2a2a2a;
+}
+html[data-host="native"] .tweak-card:hover,
+html[data-host="native"] .tweak-card.selected,
+html[data-host="native"] .tweak-card.on,
+html[data-host="native"] .stat-card:hover {
+  border-color: #e74c3c;
+}
+html[data-host="native"] .icon-tile { background: #1f1f1f; border-color: #2a2a2a; }
+html[data-host="native"] .scorebar-seg .val.teal { color: #2dd4bf; }
+html[data-host="native"] .btn.score { background: #2dd4bf; color: #042f2a; }
+html[data-host="native"] .scorebar-prog > div { background: #2dd4bf; }
+html[data-host="native"] .lock-pill,
+html[data-host="native"] .chip.warn-badge {
+  border-color: rgba(240, 180, 41, 0.5); color: #f0b429;
+}
+html[data-host="native"] .nav button.active { box-shadow: inset 3px 0 0 #e74c3c; }
+html[data-host="native"] .tweak-card,
+html[data-host="native"] .stat-card,
+html[data-host="native"] .scorebar,
+html[data-host="native"] .disk-card,
+html[data-host="native"] .locked-card {
+  background: #141414;
+  border-color: #2a2a2a;
+}
+html[data-host="native"] .tweak-card:hover,
+html[data-host="native"] .tweak-card.selected,
+html[data-host="native"] .tweak-card.on,
+html[data-host="native"] .stat-card:hover {
+  border-color: #e74c3c;
+}
+html[data-host="native"] .icon-tile { background: #1f1f1f; border-color: #2a2a2a; }
+html[data-host="native"] .scorebar-seg .val.teal { color: #2dd4bf; }
+html[data-host="native"] .btn.score { background: #2dd4bf; color: #042f2a; }
+html[data-host="native"] .scorebar-prog > div { background: #2dd4bf; }
+html[data-host="native"] .lock-pill,
+html[data-host="native"] .chip.warn-badge {
+  border-color: rgba(240, 180, 41, 0.5); color: #f0b429;
+}
+html[data-host="native"] .nav button.active { box-shadow: inset 3px 0 0 #e74c3c; }
+html[data-host="native"] .tweak-card,
+html[data-host="native"] .stat-card,
+html[data-host="native"] .scorebar,
+html[data-host="native"] .disk-card,
+html[data-host="native"] .locked-card {
+  background: #141414;
+  border-color: #2a2a2a;
+}
+html[data-host="native"] .tweak-card:hover,
+html[data-host="native"] .tweak-card.selected,
+html[data-host="native"] .tweak-card.on {
+  border-color: #e74c3c;
+}
+html[data-host="native"] .stat-card:hover {
+  border-color: #e74c3c;
+}
+html[data-host="native"] .icon-tile { background: #1f1f1f; border-color: #2a2a2a; }
+html[data-host="native"] .scorebar-seg .val.teal { color: #2dd4bf; }
+html[data-host="native"] .btn.score {
+  background: #2dd4bf; color: #042f2a;
+}
+html[data-host="native"] .scorebar-prog > div { background: #2dd4bf; }
+html[data-host="native"] .lock-pill,
+html[data-host="native"] .chip.warn-badge { border-color: rgba(240, 180, 41, 0.5); color: #f0b429; }
+html[data-host="native"] .nav button.active { box-shadow: inset 3px 0 0 #e74c3c; }
+html[data-host="native"] .auth-status .spin { border-top-color: #e74c3c; }

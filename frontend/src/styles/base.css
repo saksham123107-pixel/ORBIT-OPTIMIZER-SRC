@@ -1,0 +1,125 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+html {
+  background: #0c0c0e;
+  background: var(--bg-base);
+  border-radius: var(--r-window, 14px);
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg-base);
+  color: var(--text-1);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  border-radius: inherit;
+}
+
+/* prismatic light-leak - soft diagonal rainbow streaks over near-black */
+.aurora {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden;
+  background:
+    linear-gradient(128deg, transparent 18%, rgba(255, 90, 70, 0.055) 32%, transparent 46%),
+    linear-gradient(148deg, transparent 28%, rgba(255, 200, 70, 0.035) 40%, transparent 54%),
+    linear-gradient(112deg, transparent 42%, rgba(90, 200, 255, 0.04) 55%, transparent 68%),
+    linear-gradient(138deg, transparent 55%, rgba(120, 255, 180, 0.03) 66%, transparent 78%),
+    linear-gradient(158deg, transparent 8%, rgba(231, 76, 60, 0.07) 22%, transparent 38%),
+    var(--bg-base);
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform;
+}
+.aurora::before {
+  width: 58vw; height: 58vw; max-width: 760px; max-height: 760px;
+  left: -14vw; top: -20vh;
+  background: radial-gradient(circle, var(--orb-a), transparent 65%);
+  animation: none;
+}
+.aurora::after {
+  width: 52vw; height: 52vw; max-width: 680px; max-height: 680px;
+  right: -12vw; bottom: -18vh;
+  background: radial-gradient(circle, var(--orb-b), transparent 65%);
+  animation: none;
+}
+@keyframes orbFloat {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(4vw, 5vh, 0) scale(1.1); }
+}
+html[data-theme="light"] .aurora {
+  background:
+    linear-gradient(128deg, transparent 18%, rgba(231, 76, 60, 0.05) 32%, transparent 46%),
+    linear-gradient(148deg, transparent 28%, rgba(255, 180, 60, 0.04) 40%, transparent 54%),
+    linear-gradient(112deg, transparent 42%, rgba(80, 160, 255, 0.04) 55%, transparent 68%),
+    var(--bg-base);
+}
+
+#app { position: relative; z-index: 1; height: 100vh; display: flex; flex-direction: column; }
+
+.glass {
+  background: var(--bg-layer-1);
+  backdrop-filter: blur(30px) saturate(160%);
+  -webkit-backdrop-filter: blur(30px) saturate(160%);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+.glass::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 42%),
+    linear-gradient(0deg, rgba(231, 76, 60, 0.03), transparent 50%);
+  opacity: 1;
+}
+html[data-theme="light"] .glass {
+  box-shadow: 0 1px 2px rgba(40, 10, 10, 0.06), 0 10px 32px rgba(40, 10, 10, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+html[data-theme="light"] .glass::before { opacity: 0.45; }
+
+/* translucent glass hover lift */
+.card:hover,
+.sidebar:hover,
+.stat-card:hover,
+.act:hover,
+.twk-section:hover {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+button { font-family: inherit; }
+input, select { font-family: inherit; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(231, 76, 60, 0.3);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent); background-clip: content-box; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

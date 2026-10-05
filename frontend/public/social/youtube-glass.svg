@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- pure black radial: subtle top-left lift → true black -->
+    <radialGradient id="ybody" cx="34%" cy="26%" r="85%">
+      <stop offset="0"   stop-color="#0a0a0c"/>
+      <stop offset=".45" stop-color="#040405"/>
+      <stop offset="1"   stop-color="#000000"/>
+    </radialGradient>
+    <!-- vertical depth -->
+    <linearGradient id="ydepth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#ffffff" stop-opacity=".03"/>
+      <stop offset=".3"  stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".75" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1"   stop-color="#000000" stop-opacity=".45"/>
+    </linearGradient>
+    <!-- edge fade to absolute black -->
+    <radialGradient id="yvig" cx="50%" cy="48%" r="50%">
+      <stop offset=".55" stop-color="#000000" stop-opacity="0"/>
+      <stop offset=".9"  stop-color="#000000" stop-opacity=".4"/>
+      <stop offset="1"   stop-color="#000000" stop-opacity=".7"/>
+    </radialGradient>
+    <!-- neutral glass streaks -->
+    <linearGradient id="yst" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="ysh" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ylow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".035"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ytint" cx=".5" cy=".62" r=".55">
+      <stop offset="0" stop-color="#FF0033" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#FF0033" stop-opacity="0"/>
+    </radialGradient>
+    <!-- black-chrome bezel, dimmed -->
+    <linearGradient id="ybez" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#c8cfd8" stop-opacity=".34"/>
+      <stop offset=".35" stop-color="#3a3f47" stop-opacity=".10"/>
+      <stop offset=".6"  stop-color="#000000" stop-opacity=".7"/>
+      <stop offset="1"   stop-color="#9aa3ae" stop-opacity=".22"/>
+    </linearGradient>
+    <linearGradient id="ych" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdfefe"/>
+      <stop offset=".45" stop-color="#cfd8e2"/>
+      <stop offset=".56" stop-color="#8e99a6"/>
+      <stop offset=".78" stop-color="#59616c"/>
+      <stop offset="1" stop-color="#9aa4b0"/>
+    </linearGradient>
+    <linearGradient id="ygg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff6b7c"/>
+      <stop offset="1" stop-color="#b3001c"/>
+    </linearGradient>
+    <linearGradient id="yrg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff6b7c" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#b3001c" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="ycr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2f6fa" stop-opacity=".9"/>
+      <stop offset=".6" stop-color="#5d6570" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#c8d2dc" stop-opacity=".85"/>
+    </linearGradient>
+    <clipPath id="yclip"><circle cx="256" cy="256" r="210"/></clipPath>
+    <filter id="yblur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="yshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#yshadow)">
+    <!-- pure black body, layered -->
+    <circle cx="256" cy="256" r="210" fill="url(#ybody)"/>
+    <circle cx="256" cy="256" r="210" fill="url(#ydepth)"/>
+    <circle cx="256" cy="256" r="210" fill="url(#ytint)"/>
+
+    <g clip-path="url(#yclip)">
+      <!-- fine diagonal glass streaks -->
+      <g transform="rotate(-24 256 256)">
+        <rect x="-120" y="86"  width="752" height="46" fill="url(#yst)" opacity=".04"/>
+        <rect x="-120" y="182" width="752" height="18" fill="url(#yst)" opacity=".07"/>
+        <rect x="-120" y="216" width="752" height="6"  fill="url(#yst)" opacity=".05"/>
+      </g>
+      <ellipse cx="256" cy="396" rx="152" ry="62" fill="url(#ylow)"/>
+      <!-- edge vignette -->
+      <circle cx="256" cy="256" r="210" fill="url(#yvig)"/>
+    </g>
+
+    <!-- top sheen -->
+    <ellipse cx="256" cy="152" rx="170" ry="84" fill="url(#ysh)"/>
+
+    <!-- seat groove + neon ring + outer hairline -->
+    <circle cx="256" cy="256" r="188" fill="none" stroke="#000000" stroke-opacity=".55" stroke-width="7"/>
+    <circle cx="256" cy="256" r="188" fill="none" stroke="url(#yrg)" stroke-width="3"/>
+    <circle cx="256" cy="256" r="197" fill="none" stroke="#ffffff" stroke-opacity=".06" stroke-width="1.5"/>
+
+    <!-- bottom reflected arc -->
+    <path d="M92.2 370.7 A200 200 0 0 1 419.8 370.7"
+          fill="none" stroke="#ffffff" stroke-opacity=".08" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- black chrome bezel -->
+    <circle cx="256" cy="256" r="207" fill="none" stroke="url(#ybez)" stroke-width="5"/>
+
+    <!-- glyph: one contained glow pass + crisp fill -->
+    <g filter="url(#yblur)" opacity=".34">
+      <path transform="translate(133.6 133.6) scale(10.2)" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#FF0033"/>
+    </g>
+    <path transform="translate(133.6 133.6) scale(10.2)" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="url(#ygg)"
+          stroke="rgba(255,255,255,0.24)" stroke-width="0.35"/>
+  </g>
+</svg>

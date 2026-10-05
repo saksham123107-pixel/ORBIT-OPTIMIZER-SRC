@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- pure black radial: subtle top-left lift → true black -->
+    <radialGradient id="dbody" cx="34%" cy="26%" r="85%">
+      <stop offset="0"   stop-color="#0a0a0c"/>
+      <stop offset=".45" stop-color="#040405"/>
+      <stop offset="1"   stop-color="#000000"/>
+    </radialGradient>
+    <!-- vertical depth -->
+    <linearGradient id="ddepth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#ffffff" stop-opacity=".03"/>
+      <stop offset=".3"  stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".75" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1"   stop-color="#000000" stop-opacity=".45"/>
+    </linearGradient>
+    <!-- edge fade to absolute black -->
+    <radialGradient id="dvig" cx="50%" cy="48%" r="50%">
+      <stop offset=".55" stop-color="#000000" stop-opacity="0"/>
+      <stop offset=".9"  stop-color="#000000" stop-opacity=".4"/>
+      <stop offset="1"   stop-color="#000000" stop-opacity=".7"/>
+    </radialGradient>
+    <!-- neutral glass streaks -->
+    <linearGradient id="dst" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="dsh" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".035"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dtint" cx=".5" cy=".62" r=".55">
+      <stop offset="0" stop-color="#5865F2" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#5865F2" stop-opacity="0"/>
+    </radialGradient>
+    <!-- black-chrome bezel, dimmed -->
+    <linearGradient id="dbez" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#c8cfd8" stop-opacity=".34"/>
+      <stop offset=".35" stop-color="#3a3f47" stop-opacity=".10"/>
+      <stop offset=".6"  stop-color="#000000" stop-opacity=".7"/>
+      <stop offset="1"   stop-color="#9aa3ae" stop-opacity=".22"/>
+    </linearGradient>
+    <linearGradient id="dch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdfefe"/>
+      <stop offset=".45" stop-color="#cfd8e2"/>
+      <stop offset=".56" stop-color="#8e99a6"/>
+      <stop offset=".78" stop-color="#59616c"/>
+      <stop offset="1" stop-color="#9aa4b0"/>
+    </linearGradient>
+    <linearGradient id="dgg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#98a2ff"/>
+      <stop offset="1" stop-color="#3a45c9"/>
+    </linearGradient>
+    <linearGradient id="drg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#98a2ff" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#3a45c9" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="dcr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2f6fa" stop-opacity=".9"/>
+      <stop offset=".6" stop-color="#5d6570" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#c8d2dc" stop-opacity=".85"/>
+    </linearGradient>
+    <clipPath id="dclip"><circle cx="256" cy="256" r="210"/></clipPath>
+    <filter id="dblur" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="dshadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#dshadow)">
+    <!-- pure black body, layered -->
+    <circle cx="256" cy="256" r="210" fill="url(#dbody)"/>
+    <circle cx="256" cy="256" r="210" fill="url(#ddepth)"/>
+    <circle cx="256" cy="256" r="210" fill="url(#dtint)"/>
+
+    <g clip-path="url(#dclip)">
+      <!-- fine diagonal glass streaks -->
+      <g transform="rotate(-24 256 256)">
+        <rect x="-120" y="86"  width="752" height="46" fill="url(#dst)" opacity=".04"/>
+        <rect x="-120" y="182" width="752" height="18" fill="url(#dst)" opacity=".07"/>
+        <rect x="-120" y="216" width="752" height="6"  fill="url(#dst)" opacity=".05"/>
+      </g>
+      <ellipse cx="256" cy="396" rx="152" ry="62" fill="url(#dlow)"/>
+      <!-- edge vignette -->
+      <circle cx="256" cy="256" r="210" fill="url(#dvig)"/>
+    </g>
+
+    <!-- top sheen -->
+    <ellipse cx="256" cy="152" rx="170" ry="84" fill="url(#dsh)"/>
+
+    <!-- seat groove + neon ring + outer hairline -->
+    <circle cx="256" cy="256" r="188" fill="none" stroke="#000000" stroke-opacity=".55" stroke-width="7"/>
+    <circle cx="256" cy="256" r="188" fill="none" stroke="url(#drg)" stroke-width="3"/>
+    <circle cx="256" cy="256" r="197" fill="none" stroke="#ffffff" stroke-opacity=".06" stroke-width="1.5"/>
+
+    <!-- bottom reflected arc -->
+    <path d="M92.2 370.7 A200 200 0 0 1 419.8 370.7"
+          fill="none" stroke="#ffffff" stroke-opacity=".08" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- black chrome bezel -->
+    <circle cx="256" cy="256" r="207" fill="none" stroke="url(#dbez)" stroke-width="5"/>
+
+    <!-- glyph: one contained glow pass + crisp fill -->
+    <g filter="url(#dblur)" opacity=".34">
+      <path transform="translate(128.8 128.8) scale(10.6)" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" fill="#5865F2"/>
+    </g>
+    <path transform="translate(128.8 128.8) scale(10.6)" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" fill="url(#dgg)"
+          stroke="rgba(255,255,255,0.24)" stroke-width="0.35"/>
+  </g>
+</svg>

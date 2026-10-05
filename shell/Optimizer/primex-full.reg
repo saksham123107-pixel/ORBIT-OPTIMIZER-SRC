@@ -1,0 +1,148 @@
+Windows Registry Editor Version 5.00
+
+; =============================================================
+; PRIMEx — EVERY tweak, exactly as the source code writes it.
+; Collected from EmulatorService.OptimizeConnectedEmulator(),
+; MainViewModel optimizers, InputOptimizer, WindowService,
+; DriverService. Source: LegitX.WPF-no-login
+;
+; REBOOT after applying — mouse class driver values + curves
+; load at boot/login.
+; =============================================================
+
+; ---------- 1. MOUSE: accel OFF, flat 1:1 curves, speed 10 ----------
+[HKEY_CURRENT_USER\Control Panel\Mouse]
+"MouseSpeed"="0"
+"MouseThreshold1"="0"
+"MouseThreshold2"="0"
+"MouseSensitivity"="10"
+"DoubleClickSpeed"="200"
+"MouseTrails"="0"
+"SnapToDefaultButton"="0"
+"MouseHoverTime"="0"
+"SmoothMouseXCurve"=hex:00,00,00,00,00,00,00,00,c0,cc,0c,00,00,00,00,00,80,99,19,00,00,00,00,00,40,66,26,00,00,00,00,00,00,33,33,00,00,00,00,00
+"SmoothMouseYCurve"=hex:00,00,00,00,00,00,00,00,00,00,38,00,00,00,00,00,00,00,70,00,00,00,00,00,00,00,a8,00,00,00,00,00,00,00,e0,00,00,00,00,00
+
+; ---------- 2. DESKTOP: no shadow, no menu delay ----------
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"CursorShadow"="0"
+"MenuShowDelay"="0"
+"DpiScalingVer"=dword:00001018
+"Win8DpiScaling"=dword:00000001
+
+; ---------- 3. KEYBOARD: fastest repeat ----------
+[HKEY_CURRENT_USER\Control Panel\Keyboard]
+"KeyboardDelay"="0"
+"KeyboardSpeed"="31"
+"InitialKeyboardIndicators"="2"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response]
+"AutoRepeatDelay"="150"
+"AutoRepeatRate"="4"
+"DelayBeforeAcceptance"="0"
+"Flags"="59"
+"BounceTime"="0"
+
+; ---------- 4. GAME MODE + GPU SCHEDULING + GAME DVR ----------
+[HKEY_CURRENT_USER\Software\Microsoft\GameBar]
+"AllowAutoGameMode"=dword:00000001
+"AutoGameModeEnabled"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers]
+"HwSchMode"=dword:00000002
+
+[HKEY_CURRENT_USER\System\GameConfigStore]
+"GameDVR_Enabled"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR]
+"AllowGameDVR"=dword:00000000
+
+; ---------- 5. POWER: USB selective suspend OFF ----------
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USB]
+"DisableSelectiveSuspend"=dword:00000001
+
+; ---------- 6. AUDIO LATENCY + MMCSS + GAMES TASK ----------
+[HKEY_CURRENT_USER\Software\Microsoft\Multimedia\Audio]
+"LowLatencyMode"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Audio]
+"DisableProtectedAudioDG"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"SystemResponsiveness"=dword:00000000
+"NetworkThrottlingIndex"=dword:ffffffff
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"Affinity"=dword:00000000
+"Background Only"="False"
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000008
+"Priority"=dword:00000006
+"Scheduling Category"="High"
+"SFIO Priority"="High"
+
+; ---------- 7. DPI / COMPAT FLAGS ON EMULATORS ----------
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers]
+"HD-Player.exe"="~ DISABLEDXMAXIMIZEDWINDOWEDMODE HIGHDPIAWARE"
+"NoxPlayer.exe"="~ HIGHDPIAWARE"
+"MEmu.exe"="~ HIGHDPIAWARE"
+"LDPlayer.exe"="~ HIGHDPIAWARE"
+"Bluestacks.exe"="~ HIGHDPIAWARE"
+
+; ---------- 8. CONTROLLER / USB / BT POWER ----------
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\HidUsb\Parameters]
+"EnhancedPowerManagementEnabled"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\usbhub\Parameters]
+"DisableSelectiveSuspend"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xboxgip\Parameters]
+"ThreadPriority"=dword:0000001f
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BTHUSB\Parameters]
+"DisableSelectiveSuspend"=dword:00000001
+
+; ---------- 9. MOUSE/KEYBOARD CLASS DRIVERS ----------
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mouclass\Parameters]
+"SampleRate"=dword:000000c8
+"MouseDataQueueSize"=dword:00000064
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\kbdclass\Parameters]
+"KeyboardDataQueueSize"=dword:00000020
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mouhid\Parameters]
+"TreatAbsoluteAsRelative"=dword:00000000
+
+; ---------- 10. EXPLORER + TOUCH ----------
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"DisallowShaking"=dword:00000001
+
+[HKEY_CURRENT_USER\Control Panel\Cursors]
+"ContactVisualization"=dword:00000000
+"GestureVisualization"=dword:00000000
+
+; ---------- 11. BLUESTACKS REGISTRY: forced GPU mode ----------
+[HKEY_LOCAL_MACHINE\SOFTWARE\BlueStacks_nxt]
+"GlMode"=dword:00000002
+"GlRenderer"="2"
+"GpuDecoding"="1"
+"AstcDecoding"="1"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\BlueStacks]
+"GlMode"=dword:00000002
+"GlRenderer"="2"
+
+; ---------- 12. HD-PLAYER PRIORITY (IFEO) ----------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\HD-Player.exe\PerfOptions]
+"CpuPriorityClass"=dword:00000003
+"IoPriority"=dword:00000003
+"GPUPriority"=dword:00000008
+
+; ---------- 13. TELEMETRY / PRIVACY ----------
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]
+"AllowTelemetry"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System]
+"EnableActivityFeed"=dword:00000000
+"PublishUserActivities"=dword:00000000
+"UploadUserActivities"=dword:00000000
