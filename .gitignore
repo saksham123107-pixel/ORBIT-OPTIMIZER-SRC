@@ -1,4 +1,4 @@
-﻿# Build artifacts
+# Build artifacts
 *.exe
 *.dll
 *.obj
@@ -52,3 +52,7 @@ Thumbs.db
 *.env.local
 auth.json
 session.dat
+
+# Catch-all: any .env file
+*.env
+.env.*
