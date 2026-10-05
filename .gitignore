@@ -1,0 +1,54 @@
+﻿# Build artifacts
+*.exe
+*.dll
+*.obj
+*.o
+*.a
+*.so
+*.dylib
+*.res
+*.exp
+*.lib
+*.pdb
+*.ilk
+
+# Archives
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Directories
+node_modules/
+dist/
+publish/
+bin/
+obj/
+build/
+build2/
+runtimes/
+installer/build/
+installer/dist/
+shell/publish/
+
+# IDE / editor
+.vs/
+.vscode/
+*.user
+*.suo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Backups
+*.bak
+*.precleanup.*
+*.preimport.*
+
+# Secrets / local config
+.env
+*.env.local
+auth.json
+session.dat
